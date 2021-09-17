@@ -14,7 +14,9 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.remote.command import Command
 import pandas as pd   
+import os
 
+cwd = os.getcwd()
 video = []
 
 with open('videos.txt', 'r') as f:
@@ -22,16 +24,19 @@ with open('videos.txt', 'r') as f:
     for vod in f:
         video.append(str(vod).rstrip("\n"))
 
+print("Download the following comments from this videos\n")
+for vid in video:
+	print(vid)
 
-print(video)
-input("Press Enter to continue...")
+input("Press Enter to Start...")
 
 
 
 chromeOptions = webdriver.ChromeOptions()
-prefs = {"download.default_directory" : r"C:\Users\Administrator\Desktop\SCRAP YT"}
+prefs = {"download.default_directory" : cwd}
 chromeOptions.add_experimental_option("prefs",prefs)
 
+#### PUT THE LOCAL ADRESS OF YOUR chromedriver.exe
 driver = webdriver.Chrome(executable_path=r"C:\Users\Administrator\AppData\Local\Programs\Python\Python38-32\Lib\site-packages\selenium\webdriver\chrome\chromedriver.exe",options=chromeOptions)
   
 wait = WebDriverWait(driver,5)
@@ -48,5 +53,5 @@ for V in video:
 	link.clear()
 	time.sleep(1)
 	
-input("Press Enter to continue...")
+input("DONE ! , Press Enter to End...")
 exit()
